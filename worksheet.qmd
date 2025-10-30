@@ -25,12 +25,15 @@ energy_sources <- c("Solar (MWh)", "Wind (GWh)", "Coal (MWh)", "Hydro (kWh)")
 a.  Use str_detect() to identify all energy sources that contain the substring "Wind" or "Hydro" (hint: use the \| operator in regex).
 
 ```{r}
-
+library(stringr)
+matches <- str_detect(energy_sources, "Wind|Hydro")
 ```
 
 b.  Extract the unit type (e.g., MWh, GWh, kWh) using str_extract(). Make sure your pattern handles extra spaces or hyphens.
 
 ```{r}
+units <- str_extract(energy_sources, "\\b[MGk]\\s*-?\\s*Wh\\b")
+units <- str_replace_all(units, "\\s*-?\\s*", "")
 
 ```
 
